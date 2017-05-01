@@ -13,3 +13,8 @@ connection.connect(function(err) {
 });
 
 module.exports = connection;
+
+// host: 'ef1f2289@us-cdbr-iron-east-03.cleardb.net',
+//   user: 'b8a31a653b0b39',
+//   password: 'ef1f2289',
+//   database: 'heroku_55758f1ee80e743'
