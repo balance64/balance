@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS balance;
-CREATE DATABASE balance;
+-- DROP DATABASE IF EXISTS balance;
+-- CREATE DATABASE balance;
 
-USE balance;
+USE heroku_ec7185f66b0bf5c;
 
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT,
