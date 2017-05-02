@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS balance;
 CREATE DATABASE balance;
 
 USE balance;
