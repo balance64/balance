@@ -8,15 +8,12 @@ var app = express();
 
 app.set('port', (process.env.PORT || 4050));
 
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
 app.use(function(req, res, next){
-  console.log('req.headers: ==================>', req.headers);
   next();
 })
 
@@ -34,20 +31,9 @@ require('./auth')(app)
 
 
 app.get('/', function(req, res) {
-    //res.send('========================================================authentication passed')
     res.sendFile(path.join(__dirname + '/../client/index.html'));
 });
 app.use(express.static(__dirname + '/../client'));
-// app.get('/api/users/:username', (request, response) => {
-//   knex.select().from('users').where({username: request.params.username})
-//           .then(function(secrets) {
-//            console.log('fetching tg');
-//             response.status(200).json(secrets);
-//           })
-//           .catch(function(error) {
-//             console.error('somethings wrong with db')
-//           });
-// });
 
 var insertWeight = function(username, weight) {
   return knex('users').select('id').where({username: username})
@@ -55,7 +41,6 @@ var insertWeight = function(username, weight) {
       res.status(404).send();
     })
     .then(function(result) {
-      console.log('==============================> ', result);
       knex('weights').insert({weight: weight, user_id: result[0].id, date: new Date()})
         .then(function() {
           knex('users').update({weight: weight}).where({username:username}).
@@ -65,15 +50,13 @@ var insertWeight = function(username, weight) {
     });
 }
 app.get('/test', function(req, res) {
-  //res.send('asdf');
   res.send(JSON.stringify('sss' + req.user + 'sss') );
 })
 
 app.get('/basicInfo', function(req, res) {
-  //console.log('req basic info of ===============', req.user);
   knex('users').select().where({username: req.user})
   .then(function(results){
-    res.status(200).json(results[0]); //for testing try 'adam' instead of req.user
+    res.status(200).json(results[0]); 
   })
 
 });
@@ -89,7 +72,6 @@ app.get('/foodHistory', function(req, res) {
 });
 
 app.get('/exerciseHistory', function(req, res) {
-  console.log('======================', req.user);
   knex.from('exercises').innerJoin('users', 'users.id', 'exercises.user_id')
         .select().where({'users.username': req.user})
         .then(function(results){
@@ -103,16 +85,12 @@ app.get('/weightHistory', function(req, res) {
   knex.from('weights').innerJoin('users', 'users.id', 'weights.user_id')
     .select('weights.weight', 'weights.date').where({'users.username': req.user})
     .then(function(results) {
-      console.log('/weight HIstory is ', results)
       res.status(200).json(results);
     }).catch(function(err) {
       res.status(500).json(err);
     })
 })
 
-// app.post('/weight', function(req, res) {
-//   knex()
-// });
 
 //curl --data "username=333&password=333" http://localhost:4050/signin
 //curl -v -H "Authorization: Bearer 123456789" --data "sex=male&height=176&weight=200" http://localhost:4050/profile
@@ -152,7 +130,6 @@ app.post('/profile', function(req, res) {
 
 app.post('/weight', function(req, res) {
   var username = req.user; 
-  console.log('=====================> ',username)
   var weight = req.body.weight;
   insertWeight(username, weight)
     .then(function(){
@@ -166,7 +143,6 @@ app.post('/food', function(req, res) {
   var brand = req.body.brand || null;
   var ammount = req.body.ammount || null;
   var calories = req.body.calories || null;
-  console.log('somethings=======', req.user)
   knex('users').select('id').where({username: req.user})
     .catch(function(err){
 
@@ -198,7 +174,6 @@ app.post('/exercise', function(req, res) {
       res.status(401).send({message: 'problem inserting in database'});
     });
 });
-
 
 app.listen(app.get('port'), function() {
   console.log('Balance running on port ... ', app.get('port'));

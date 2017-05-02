@@ -1,4 +1,5 @@
 # balance
+<<<<<<< 0150ff204fb5fc53e8ae3a5db9de77420aefff37
 <p>Fitness Journal that keeps track of your progress so you can optimize your personal fitness jouney</p>
 
 # How to add to this app
@@ -14,5 +15,3 @@
 <p>The graph is a google graph</p>
 <p>The carousel is from owlCarousel</p>
 <p>The styles.css only pertains to the calendar, all styling is done with materializecss</p>
-
-
