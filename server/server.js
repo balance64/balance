@@ -173,7 +173,6 @@ app.post('/exercise', function(req, res) {
     .catch(function(e) {
       res.status(401).send({message: 'problem inserting in database'});
     });
-});
 
 app.listen(app.get('port'), function() {
   console.log('Balance running on port ... ', app.get('port'));
