@@ -1,12 +1,13 @@
 module.exports = {
-	development:{
-		client: 'mysql',
-		 connection: {
-		   host : '127.0.0.1',
-		   user : 'root',
-		   password : '',
-		   database : 'balance'
-
-		 }
-	}
-}
+  development: {
+    client: 'mysql',
+    connection: {
+      database: 'balance',
+      user:     'root',
+      password: ''
+    },
+  seeds: {
+    directory: './migrations/seeds'
+    }
+  }
+};

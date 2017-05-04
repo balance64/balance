@@ -1,12 +1,15 @@
-angular.module('balance',['ngRoute'])
-	.config(function ('$routeProvider'){
+angular.module('balance',['ngRoute',
+		'profile',
+		'services'
+	])
+	.config(function ($routeProvider){
 		$routeProvider
-			.when('/secrets', {//eventually will be something like '/users/:username'
-				template: '/app/profile/profile.html',
+			.when('/users/trace', {//eventually will be something like '/users/:username'
+				templateUrl: 'app/profile/profile.html',
 				controller: 'profileController'
 			})
 			.otherwise('/', {
-				template: '/app/home/home.html',
-				controller: 'homeCOntroller'
+				templateUrl: 'app/home/home.html',
+				controller: 'homeController'
 			});
 	});
