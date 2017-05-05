@@ -7,14 +7,14 @@ var app = express();
 
 app.set('port', (process.env.PORT || 4050));
 
-app.use(express.static('../client'));
+app.use(express.static(__dirname + '/../client'));
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/../client/index.html'));
 });
 
-app.get('/api/users', (request, response) => {
-  knex.select().from('users')
+app.get('/api/users/:username', (request, response) => {
+  knex.select().from('users').where({username: request.params.username})
           .then(function(secrets) {
           	console.log('fetching tg');
             response.status(200).json(secrets);
