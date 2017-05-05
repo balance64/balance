@@ -2,30 +2,34 @@ module.exports = [
   // all hashes were created with the username
   {
     id: 1,
-    exercise: 'coke',
+    user_id: 1,
+    exercise: 'running',
     miles: 3.5,
-    created_at: '2014-08-20 15:30:00',
-    user_id: 1
+    calories: 300,
+    created_at: '2014-08-20 15:30:00'
   },
   {
     id: 2,
-    exercise: 'sprite',
+    user_id: 2,
+    exercise: 'bicycle',
     miles: 3.5,
+    calories: 300,
     created_at: '2014-08-20 15:30:00',
-    user_id: 2
   },
   {
     id: 3,
-    exercise: 'dew',
+    user_id: 3,
+    exercise: 'jogging',
     miles: 3.5,
-    created_at: '2014-08-20 15:30:00',
-    user_id: 3
+    calories: 400,
+    created_at: '2014-08-20 15:30:00'
   },
   {
     id: 4,
-    exercise: 'squrit',
+    user_id: 4,
+    exercise: 'cross fit',
     miles: 3.5,
-    created_at: '2014-08-20 15:30:00',
-    user_id: 4
+    calories: 450,
+    created_at: '2014-08-20 15:30:00'
   }
 ];

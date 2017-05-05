@@ -4,6 +4,7 @@
   "description": "An app to keep track of your fitness successes and failures",
   "main": "server/server.js",
   "scripts": {
+    "start": "nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,8 +18,12 @@
   },
   "homepage": "https://github.com/Fliko/balance#readme",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "knex": "^0.13.0",
     "mysql": "^2.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }

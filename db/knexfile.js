@@ -6,8 +6,8 @@ module.exports = {
       user:     'root',
       password: ''
     },
-  seeds: {
-    directory: './migrations/seeds'
+    seeds: {
+      directory: './migrations/seeds'
     }
   }
 };
