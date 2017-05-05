@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     col.integer('weight').notNullable();
     col.integer('height').notNullable();
     col.string('sex').notNullable();
+    col.string('fucking');
   })
   .createTableIfNotExists('foods', function (col) {
     col.increments('id').primary();
@@ -25,6 +26,14 @@ exports.up = function(knex, Promise) {
     col.foreign('user_id').references('users.id');
   })
   .createTableIfNotExists('exercises', function (col) {
+    col.increments('id').primary();
+    col.string('exercise').notNullable();
+    col.float('miles', 4, 1).notNullable();
+    col.datetime('created_at').notNullable();
+    col.integer('user_id').unsigned();
+    col.foreign('user_id').references('users.id');
+  })
+  .createTableIfNotExists('shutup', function (col) {
     col.increments('id').primary();
     col.string('exercise').notNullable();
     col.float('miles', 4, 1).notNullable();

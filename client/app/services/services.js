@@ -10,7 +10,28 @@ angular.module('services',[])
 		});
 	};
 
+
+	var tabView = function(item) {
+		var tabs = {
+			greeting: false,
+			weight: false,
+			exercise: false,
+			consumables: false,
+			calendar: false,
+			graphs: false
+		}
+
+		if(item) {
+			tabs[item] = true;
+		} else {
+			tabs.greeting = true;
+		}
+
+		return tabs;
+	};
+
 	return {
-		getProfileInfo: getProfileInfo
+		getProfileInfo: getProfileInfo,
+		tabView: tabView
 	};
 });
