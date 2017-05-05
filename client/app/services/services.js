@@ -10,6 +10,23 @@ angular.module('services',[])
 		});
 	};
 
+	var getFood =function(user) {
+		return $http({
+			method: 'GET',
+			url: `api/food/${user}`
+		}).then(function(result){
+			return result.data;
+		});
+	};
+
+	var getDrink =function(user) {
+		return $http({
+			method: 'GET',
+			url: `api/drink/${user}`
+		}).then(function(result){
+			return result.data;
+		});
+	};
 
 	var tabView = function(item) {
 		var tabs = {

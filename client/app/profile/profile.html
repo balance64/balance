@@ -19,6 +19,11 @@
                 <li>{{info.height}}</li>
                 <li>{{info.sex}}</li>
             </ul>
+            <br/>
+            <ul class='grey col s6 profile-info'>
+                <li ng-repeat='food in foods'>{{food.name}}:  {{food.calories}}</li>
+                <li ng-repeat='drink in drinks'>{{drink.name}}:  {{drink.calories}}</li>
+            </ul>
         </div>
         <!-- Materialize has cards that hold information http://materializecss.com/cards.html -->
         <div class="card col s9">
