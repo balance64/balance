@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='balance'>
 <head>
-  <title>Life should be awesome</title>
+  <title>Life is Sick!</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+  <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
 </head>
-<body>
-  <h1>Life should be awesome</h1>
-  <h4>But it's not :(</h4>
+<body class='teal'>
+  <div ng-view ></div>
+
+  <script type='text/javascript' src="app/services/services.js"></script>
+  <script type='text/javascript' src="app/profile/profile.js"></script>
+  <script type='text/javascript' src="app/app.js"></script>
 </body>
 </html>

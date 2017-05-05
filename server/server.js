@@ -1,16 +1,20 @@
 const config = require('../db/knexfile.js')['development'];
 const knex = require('knex') (config);
-
+const path = require('path');
 var express = require('express');
 
 var app = express();
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 4050));
 
-app.use(express.static('../client'));
+app.use(express.static(__dirname + '/../client'));
 
-app.get('/secrets', (request, response) => {
-  knex.select().from('users')
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/../client/index.html'));
+});
+
+app.get('/api/users/:username', (request, response) => {
+  knex.select().from('users').where({username: request.params.username})
           .then(function(secrets) {
           	console.log('fetching tg');
             response.status(200).json(secrets);
@@ -20,14 +24,6 @@ app.get('/secrets', (request, response) => {
           });
 });
 
-
-// app.get('/theTruth', (req, res) => {
-// 	db.query('SELECT * FROM users', function(err, results) {
-// 		if (err) throw err;
-// 		res.send(results);
-// 		res.end();
-// 	});
-// });
 
 app.listen(app.get('port'), function() {
   console.log('Balance running on port ... ', app.get('port'));
