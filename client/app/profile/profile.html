@@ -1,75 +1,78 @@
 <div class='row'>
-	<nav>
-   		<div class="nav-wrapper">
-      		<a href="#" class="brand-logo"><img src="http://vignette3.wikia.nocookie.net/family-guy-the-quest-for-stuff/images/5/5b/Fat-jogger-female.png/revision/latest?cb=20150123162517" height="60" width="80"></a>
-      		<ul id="nav-mobile" class="right hide-on-med-and-down">
-        		<li><a href="">Logout</a></li>
-        		<li><a href="">Update Profile</a></li>
-      		</ul>
-    	</div>
-  	</nav>
-  	<div class='container'>
-		<div class='col s3'>
-			<img class='profile-pic' src='http://cdn.pulptastic.com/wp-content/uploads/2015/09/sloth1.jpg' height="80" width="80"/><br/>
-			<ul class='grey col s6 profile-info'>
-				<li>{{info.username}}</li>
-				<li>{{info.weight}}</li>
-				<li>{{info.height}}</li>
-				<li>{{info.sex}}</li>
-			</ul>	
-		</div>
-		
-		<div class="card col s9">
-		  <div class="card-content">
-		    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-		  </div>
-		  <div class="card-tabs">
-		    <ul class="tabs tabs-fixed-width">
-		      <li class="tab" ng-click='form = true; calendar = false; graphs = false'><a href="">Form</a></li>
-		      <li class="tab" ng-click='calendar = true; form = false; graphs = false'><a href="">Calendar</a></li>
-		      <li class="tab" ng-click='graphs = true; form = false; calendar = false'><a href="">Graphs</a></li>
-		    </ul>
-		  </div>
-		  <div class="card-content grey lighten-4">
-		    <div ng-show='form'>
-		    	<div class='row'>
-				  <form class="col s12">
-				    <div class="row">
-					    <div class="input-field col s12">
-					      <input id="weight" type="text" class="validate col s12">
-					      <label class="active" for="weight">Weight</label>
-					    </div>
-					</div>
-				    <div class="row">
-				      <div class="input-field col s6">
-				        <input id="Food" type="text" class="validate">
-				        <label class="active" for="Food">Food</label>
-				      </div>
-				      <div class="input-field col s6">
-				        <input id="Calories" type="text" class="validate">
-				        <label class="active" for="Calories">Calories Consumed</label>
-				      </div>
-				    </div>
-				    <div class="row">
-				      <div class="input-field col s6">
-				        <input id="Exercise" type="text" class="validate">
-				        <label class="active" for="Exercise">Exercise</label>
-				      </div>
-				      <div class="input-field col s6">
-				        <input id="burnt" type="text" class="validate">
-				        <label class="active" for="burnt">Calories burnt</label>
-				      </div>
-				    </div>
-				  </form>
-				</div>
-			</div>
-			<div ng-show='calendar'>
-				i hate tuesdays
-			</div>
-			<div ng-show='graphs'>
-				i hate wednesdays
-			</div>
-		  </div>
-		</div>
-	</div>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo"><img src="http://vignette3.wikia.nocookie.net/family-guy-the-quest-for-stuff/images/5/5b/Fat-jogger-female.png/revision/latest?cb=20150123162517" height="60" width="80"></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="">Logout</a></li>
+                <li><a href="">Update Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- container her keeps the wide borders, take it away and everything will fit the page -->
+    <div class='container'>
+        <div class='col s3'>
+            <img class='profile-pic' src='http://cdn.pulptastic.com/wp-content/uploads/2015/09/sloth1.jpg' height="80" width="80" />
+            <br/>
+            <ul class='grey col s6 profile-info'>
+                <li>{{info.username}}</li>
+                <li>{{info.weight}}</li>
+                <li>{{info.height}}</li>
+                <li>{{info.sex}}</li>
+            </ul>
+        </div>
+        <!-- Materialize has cards that hold information http://materializecss.com/cards.html -->
+        <div class="card col s9">
+            <div class="card-content">
+                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-tabs">
+                <ul class="tabs tabs-fixed-width">
+                    <li class="tab" ng-click='form = true; calendar = false; graphs = false'><a href="">Form</a></li>
+                    <li class="tab" ng-click='calendar = true; form = false; graphs = false'><a href="">Calendar</a></li>
+                    <li class="tab" ng-click='graphs = true; form = false; calendar = false'><a href="">Graphs</a></li>
+                </ul>
+            </div>
+            <!-- Input form inside of card this turned out to be VERY picky, don't take away the active class; Maybe add jquery so to keep this in a serperate file -->
+            <div class="card-content grey lighten-4">
+                <div ng-show='form'>
+                    <div class='row'>
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="weight" type="text" class="validate col s12">
+                                    <label class="active" for="weight">Weight</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="Food" type="text" class="validate">
+                                    <label class="active" for="Food">Food</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="Calories" type="text" class="validate">
+                                    <label class="active" for="Calories">Calories Consumed</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="Exercise" type="text" class="validate">
+                                    <label class="active" for="Exercise">Exercise</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="burnt" type="text" class="validate">
+                                    <label class="active" for="burnt">Calories burnt</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div ng-show='calendar'>
+                    i hate tuesdays
+                </div>
+                <div ng-show='graphs'>
+                    i hate wednesdays
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

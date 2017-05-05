@@ -2,7 +2,7 @@ angular.module('balance',['ngRoute',
 		'profile',
 		'services'
 	])
-	.config(function ($routeProvider){
+	.config(function ($routeProvider, $locationProvider){
 		$routeProvider
 			.when('/users/trace', {//eventually will be something like '/users/:username'
 				templateUrl: 'app/profile/profile.html',
@@ -12,4 +12,6 @@ angular.module('balance',['ngRoute',
 				templateUrl: 'app/home/home.html',
 				controller: 'homeController'
 			});
+
+			
 	});
