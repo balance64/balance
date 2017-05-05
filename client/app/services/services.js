@@ -10,12 +10,7 @@ angular.module('services',[])
 		});
 	};
 
-	var count = function(cnt) {
-		return ++cnt;
-	}
-
 	return {
-		getProfileInfo: getProfileInfo,
-		count: count
+		getProfileInfo: getProfileInfo
 	};
 });
