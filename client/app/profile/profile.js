@@ -7,13 +7,13 @@ angular.module('profile', [])
 		$scope.info = info[0];
 	});
 
-  Prof.getFood($scope.username).then(function(info) {
-    $scope.foods = food;
-  });
+  // Prof.getFood($scope.username).then(function(info) {
+  //   $scope.foods = food;
+  // });
 
-  Prof.getDrink($scope.username).then(function(info) {
-    $scope.drinks = drink;
-  });
+  // Prof.getDrink($scope.username).then(function(info) {
+  //   $scope.drinks = drink;
+  // });
 
 	$scope.tabs = Prof.tabView();
 
