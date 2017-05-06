@@ -62,6 +62,7 @@ module.exports = function(app, knex) {
 	///here specify the routes that need protection 
 	app.use('/', passport.authenticate('bearer', {session: false }));
 	app.use('/test', passport.authenticate('bearer', {session: false }));
+	app.use('/foodHistory', passport.authenticate('bearer', {session: false }));
 }
 
 
