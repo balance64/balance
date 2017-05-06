@@ -3,10 +3,15 @@ angular.module('balance',['ngRoute',
 		'services',
 		'login',
 		'signup',
-		'home'
+		'home',
+		'maker'
 	])
 	.config(function ($routeProvider, $locationProvider){
 		$routeProvider
+			.when('/maker/:username', {
+				templateUrl: 'app/profile/maker.html',
+				controller: 'makerController'
+			})
 			.when('/signup', {
 				templateUrl: 'app/auth/signup.html',
 				controller: 'signupController'
