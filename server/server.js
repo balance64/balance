@@ -8,21 +8,24 @@ var app = express();
 
 app.set('port', (process.env.PORT || 4050));
 
-app.use(express.static(__dirname + '/../client'));
+
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 
 
-require('./auth')(app)
-
+require('./auth/auth.js')(app, knex)
 
 
 
 app.get('/', function(req, res) {
+    //res.send('========================================================authentication passed')
     res.sendFile(path.join(__dirname + '/../client/index.html'));
 });
-
+app.use(express.static(__dirname + '/../client'));
 app.get('/api/users/:username', (request, response) => {
   knex.select().from('users').where({username: request.params.username})
           .then(function(secrets) {
@@ -34,6 +37,11 @@ app.get('/api/users/:username', (request, response) => {
           });
 });
 
+
+app.get('/test', function(req, res) {
+  //res.send('asdf');
+  res.send(JSON.stringify('sss' + req.user + 'sss') );
+})
 
 app.listen(app.get('port'), function() {
   console.log('Balance running on port ... ', app.get('port'));

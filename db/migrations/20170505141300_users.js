@@ -47,6 +47,10 @@ exports.up = function(knex, Promise) {
     col.string('username').notNullable().primary();
     col.string('password').notNullable();
   })
+  .createTableIfNotExists('tokens' function(col) {
+    col.string('token').notNullable().primary();
+    col.string('username').notNullable();
+  })
   .then(function() {
     console.log('tables been created')
   })
