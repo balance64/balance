@@ -43,6 +43,34 @@ app.get('/test', function(req, res) {
   res.send(JSON.stringify('sss' + req.user + 'sss') );
 })
 
+app.get('/basicInfo', function(req, res) {
+  knex('users').select().where({username: req.user}).then(function(results){
+    res.status(200).json(results[0]); //for testing try 'adam' instead of req.user
+  });
+});
+
+app.get('/foodHistory', function(req, res) {
+  knex.from('foods').innerJoin('users', 'users.id', 'foods.user_id')
+  .select('food', 'brand', 'ammount', 'calories').where({'users.username': req.user})
+  .then(function(results){
+    res.status(200).json(results);
+  }).catch(function(error){
+    res.status(500).json(error);
+  })
+});
+
+app.get('/exerciseHistory', function(req, res) {
+  knex.from('exercises').innerJoin('users', 'users.id', 'exercises.user_id')
+        .select().where({'users.username': req.user})
+        .then(function(results){
+          res.status(200).json(results);
+        }).catch(function(err){
+          res.status(500).json(err);
+        });
+});
+
+
+
 app.listen(app.get('port'), function() {
   console.log('Balance running on port ... ', app.get('port'));
 });
