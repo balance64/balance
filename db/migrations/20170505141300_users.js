@@ -6,7 +6,6 @@ exports.up = function(knex, Promise) {
     col.integer('weight').notNullable();
     col.integer('height').notNullable();
     col.string('sex').notNullable();
-    col.string('fucking');
   })
   .createTableIfNotExists('foods', function (col) {
     col.increments('id').primary();
@@ -46,10 +45,6 @@ exports.up = function(knex, Promise) {
   .createTableIfNotExists('authentications', function(col) {
     col.string('username').notNullable().primary();
     col.string('password').notNullable();
-  })
-  .createTableIfNotExists('tokens' function(col) {
-    col.string('token').notNullable().primary();
-    col.string('username').notNullable();
   })
   .then(function() {
     console.log('tables been created')

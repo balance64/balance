@@ -1,10 +1,13 @@
+console.log('sddddd');
+
 angular.module('balance',['ngRoute',
 		'profile',
 		'services',
 		'login',
 		'signup',
 		'home',
-		'maker'
+		'maker',
+		'AuthModule'
 	])
 	.config(function ($routeProvider, $locationProvider){
 		$routeProvider

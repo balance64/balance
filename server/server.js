@@ -15,7 +15,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-
+app.use(function(req, res, next){
+  console.log(req.headers);
+  next();
+})
 
 require('./auth/auth.js')(app, knex)
 
