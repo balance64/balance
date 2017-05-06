@@ -3,7 +3,6 @@ angular.module('balance',['ngRoute',
 		'services',
 		'login',
 		'signup',
-<<<<<<< a169a92b78685fad4d88c8fa18a4c36629ab9da4
 		'home',
 		'maker'
 	])
@@ -13,12 +12,6 @@ angular.module('balance',['ngRoute',
 				templateUrl: 'app/profile/maker.html',
 				controller: 'makerController'
 			})
-=======
-		'home'
-	])
-	.config(function ($routeProvider, $locationProvider){
-		$routeProvider
->>>>>>> Add some pages and prettiness
 			.when('/signup', {
 				templateUrl: 'app/auth/signup.html',
 				controller: 'signupController'
