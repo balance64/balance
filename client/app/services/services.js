@@ -19,10 +19,19 @@ angular.module('services',[])
 		});
 	};
 
-	var getDrink =function(user) {
+	var getExercises =function(user) {
 		return $http({
 			method: 'GET',
-			url: `api/drink/${user}`
+			url: `api/exercises/${user}`
+		}).then(function(result){
+			return result.data;
+		});
+	};
+
+	var getWeight =function(user) {
+		return $http({
+			method: 'GET',
+			url: `api/weight/${user}`
 		}).then(function(result){
 			return result.data;
 		});
@@ -49,6 +58,10 @@ angular.module('services',[])
 
 	return {
 		getProfileInfo: getProfileInfo,
-		tabView: tabView
+		tabView: tabView,
+		getFood: getFood,
+		getExercises, getExercises,
+		getWeight: getWeight
+
 	};
 });
