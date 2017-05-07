@@ -10,26 +10,32 @@ angular.module('utilsModule', [])
 	};
 })
 
-.factory('currentUser', function() {
+.factory('currentUser', function($window) {
 
 	var user = {
 		username: "",
-		token: "",
+		token: $window.localStorage.getItem('balance.token') || "",
 		loggedIn: function() {
-			return this.token;
+			//console.log(this.token);
+			return this.token !== '';
+		},
+		signOut: function() {
+			this.token = '';
+			$window.localStorage.setItem('balance.token', '');
 		}
-	}
+	};
 
 	return {
 		user: user,
 		setUser: function(username, token) {
 			this.user.username = username;
 			this.user.token = token;
+			$window.localStorage.setItem('balance.token', token);
 		}
 	};
 })
 
-.factory('addToken', function(currentUser, $q) {
+.factory('addToken', function(currentUser, $q) { ///interceptor
 
 	var request = function(config) {
 		if(currentUser.user.loggedIn()) {
@@ -40,6 +46,28 @@ angular.module('utilsModule', [])
 
 	return {
 		request: request
+	}
+})
+
+.factory('redirectLogin', function($q, $location) {
+
+	var path;
+
+	var responseError = function(response) {
+		path = $location.path();
+		if(response.status === 401) {
+			$location.path('/login');
+		}
+		return $q.reject(response);
+	}
+
+	var redirectAfterLogin = function(username) {
+		$location.path(path || '/users/'+username);
+	}
+
+	return {
+		responseError: responseError,
+		redirectAfterLogin: redirectAfterLogin
 	}
 })
 

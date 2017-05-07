@@ -38,4 +38,17 @@ angular.module('balance',['ngRoute',
 			});
 
 
+	})
+	.run(function ($rootScope, $location, currentUser) {
+	  console.log(currentUser);
+	  $rootScope.$on('$routeChangeStart', function (evt, next, current) {
+	    console.log('$routeChangeStart MF: ', next.$$route.originalPath)
+	    if(next.$$route.originalPath === '/signup') {
+	    	return;
+	    }
+	    if (!currentUser.user.loggedIn()) {
+	      console.log('is not authenticated ')
+	      $location.path('/login');
+	    }
+	  });
 	});

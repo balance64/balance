@@ -1,7 +1,11 @@
 angular.module('profile', [])
 
-.controller('profileController', ['$scope', 'Prof', '$location', function($scope, Prof, $location) {
+.controller('profileController', ['$scope', 'Prof', '$location', 'currentUser', function($scope, Prof, $location, currentUser) {
 	$scope.username = $location.path().split('/')[2];
+  console.log('cur user ', currentUser)
+  $scope.signout = function() {
+    currentUser.user.signOut();
+  }
 
 	Prof.getProfileInfo($scope.username).then(function(info) {
 		$scope.info = info[0];

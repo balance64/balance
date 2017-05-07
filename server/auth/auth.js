@@ -45,7 +45,7 @@ module.exports = function(app, knex) {
 			console.log(password)
 			bcrypt.compare(req.body.password, password, function(err, response) {
 				if(err) {
-					res.json({success: false, message: err});
+					res.status(401).json({success: false, message: err});
 				} else {
 					console.log('config key: ', config);
 					var token = jwt.sign(req.body, config.key, {expiresIn: '1h'}); 
