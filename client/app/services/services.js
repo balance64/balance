@@ -1,12 +1,17 @@
 angular.module('services',[])
 
 .factory('Prof', function($http) {
+
+	var getDateSelected = function(date) {
+		console.log('gemo should fuck off!', date);
+	};
+
 	var getProfileInfo = function(user) {
 		return $http({
 			method: 'GET',
 			url: '/basicInfo'
 		}).then(function(result){
-			console.log('=======================THIS ONE====>', result.data)
+			console.log('================THIS ONE====>', result.data)
 			return result.data;
 		});
 	};
@@ -50,6 +55,11 @@ angular.module('services',[])
 
 		if(item) {
 			tabs[item] = true;
+			if(item === 'calendar') {
+				$(function(){
+					$('#calendar').fullCalendar()
+				});
+			}
 		} else {
 			tabs.greeting = true;
 		}
@@ -73,7 +83,7 @@ angular.module('services',[])
 		postWeight: postWeight,
 		postFood: postFood,
 		postExercise: postExercise,
-
+		getDateSelected: getDateSelected,
 		getProfileInfo: getProfileInfo,
 		tabView: tabView,
 		getFood: getFood,
