@@ -10,49 +10,57 @@ angular.module('profile', [])
 	Prof.getProfileInfo($scope.username).then(function(info) {
 		$scope.info = info[0];
 	});
-
+  $scope.hello = 'fuckhead';
   // Prof.getFood($scope.username).then(function(info) {
   //   $scope.foods = food;
   // });
 
-  // Prof.getDrink($scope.username).then(function(info) {
-  //   $scope.drinks = drink;
+  // Prof.getExercises($scope.username).then(function(info) {
+  //   $scope.exerses = drink;
   // });
 
+  // Prof.getWeight($scope.username).then(function(info) {
+  //   $scope.weight = drink;
+  // });
 	$scope.tabs = Prof.tabView();
-
-
   $scope.tabView = (item) => $scope.tabs = Prof.tabView(item);
 }])
 
-.directive("calendar", function() {
+.directive("calendar", function(Prof) {
     return {
         restrict: "E",
+        transclude: true,
         templateUrl: "app/profile/calendar.html",
         scope: {
-            selected: "="
+            selected: '='
         },
+
         link: function(scope) {
-            scope.selected = _removeTime(scope.selected || moment());
+            scope.selected = _removeTime(scope.selected || moment().utc());
             scope.month = scope.selected.clone();
 
             var start = scope.selected.clone();
             start.date(1);
+            // console.log(scope.selected);
             _removeTime(start.day(0));
 
-            _buildMonth(scope, start, scope.month);
+            Prof.getProfileInfo('adam').then(function(info) {scope.calInfo = info[0]});
 
+            _buildMonth(scope, start, scope.month);
             scope.select = function(day) {
-                scope.selected = day.date;  
-                console.log(scope.selected)
+                scope.selected = day.date;
             };
+
+            // Prof.getProfileInfo(scope.username).then(function(info) {
+            //   scope.info = info[0];
+            // });
 
             scope.next = function() {
                 var next = scope.month.clone();
                 _removeTime(next.month(next.month()+1)).date(1);
                 scope.month.month(scope.month.month()+1);
                 _buildMonth(scope, next, scope.month);
-            };
+            };  
 
             scope.previous = function() {
                 var previous = scope.month.clone();

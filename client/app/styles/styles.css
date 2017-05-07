@@ -74,3 +74,12 @@ span.day {
     -moz-box-sizing:border-box;
     border-left:solid 1px black;
 }
+
+span.day.selected {
+    background-color: grey;
+}
+
+#info {
+    float:right;
+    text-align: right;
+}
