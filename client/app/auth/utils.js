@@ -13,17 +13,23 @@ angular.module('utilsModule', [])
 .factory('currentUser', function($window) {
 
 	var user = {
-		username: "",
+		username: $window.localStorage.getItem('balance.username') || "",
 		token: $window.localStorage.getItem('balance.token') || "",
 		loggedIn: function() {
 			//console.log(this.token);
-			return this.token !== '';
+			return this.token !== '' && this.username !== '';
 		},
 		signOut: function() {
 			this.token = '';
 			$window.localStorage.setItem('balance.token', '');
+			$window.localStorage.setItem('balance.username', '');
 		}
 	};
+
+	// if(this.username === '' || this.token === '') {
+	// 		token = '';
+	// 		$window.localStorage.getItem('balance.token', '');
+	// 	}
 
 	return {
 		user: user,
@@ -31,6 +37,7 @@ angular.module('utilsModule', [])
 			this.user.username = username;
 			this.user.token = token;
 			$window.localStorage.setItem('balance.token', token);
+			$window.localStorage.setItem('balance.username', username);
 		}
 	};
 })

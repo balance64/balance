@@ -11,7 +11,7 @@ exports.up = function(knex, Promise) {
     col.increments('id').primary();
     col.string('food').notNullable();
     col.string('brand');
-    col.string('ammount').notNullable();
+    col.string('ammount');
     col.integer('calories').notNullable();
     col.datetime('created_at').notNullable();
     col.integer('user_id').unsigned();
@@ -32,14 +32,13 @@ exports.up = function(knex, Promise) {
     col.float('miles', 4, 1).notNullable();
     col.datetime('created_at').notNullable();
     col.integer('user_id').unsigned();
-    col.foreign('user_id').references('users.id');
+    col.foreign('user_id').references('id').inTable('users');
   })
   .createTableIfNotExists('weights', function (col) {
     col.increments('id').primary();
-    col.datetime('date').notNullable();
+    col.datetime('date').notNullable();///or defaultTo(knex.raw(knex.raw('now()')))
     col.float('weight', 4, 1).notNullable();
-    col.datetime('created_at').notNullable();
-    col.integer('user_id').unsigned();
+    col.integer('user_id').unsigned().notNullable();
     col.foreign('user_id').references('users.id');
   })
   .createTableIfNotExists('authentications', function(col) {

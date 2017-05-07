@@ -43,8 +43,13 @@ angular.module('balance',['ngRoute',
 	  console.log(currentUser);
 	  $rootScope.$on('$routeChangeStart', function (evt, next, current) {
 	    console.log('$routeChangeStart MF: ', next.$$route.originalPath)
-	    if(next.$$route.originalPath === '/signup') {
-	    	return;
+	    //if(next.$$route.originalPath === '/signup' || next.$$route.originalPath === '/login') {
+	    if(next.$$route.originalPath === '/signup' || next.$$route.originalPath === '/login') {
+	    	console.log('asdf');
+	    	if(currentUser.user.loggedIn()) {
+	    		console.log(JSON.stringify(currentUser));
+	    		$location.path('/users/' + currentUser.user.username);
+	    	} else return;
 	    }
 	    if (!currentUser.user.loggedIn()) {
 	      console.log('is not authenticated ')
