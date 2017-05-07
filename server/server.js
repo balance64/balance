@@ -29,16 +29,16 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/../client/index.html'));
 });
 app.use(express.static(__dirname + '/../client'));
-app.get('/api/users/:username', (request, response) => {
-  knex.select().from('users').where({username: request.params.username})
-          .then(function(secrets) {
-          	console.log('fetching tg');
-            response.status(200).json(secrets);
-          })
-          .catch(function(error) {
-            console.error('somethings wrong with db')
-          });
-});
+// app.get('/api/users/:username', (request, response) => {
+//   knex.select().from('users').where({username: request.params.username})
+//           .then(function(secrets) {
+//           	console.log('fetching tg');
+//             response.status(200).json(secrets);
+//           })
+//           .catch(function(error) {
+//             console.error('somethings wrong with db')
+//           });
+// });
 
 
 app.get('/test', function(req, res) {
@@ -47,7 +47,7 @@ app.get('/test', function(req, res) {
 })
 
 app.get('/basicInfo', function(req, res) {
-  console.log('req basic info of ===============', req.user);
+  //console.log('req basic info of ===============', req.user);
   knex('users').select().where({username: req.user}).then(function(results){
     res.status(200).json(results[0]); //for testing try 'adam' instead of req.user
   });

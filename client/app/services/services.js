@@ -4,8 +4,9 @@ angular.module('services',[])
 	var getProfileInfo = function(user) {
 		return $http({
 			method: 'GET',
-			url: `api/users/${user}`
+			url: '/basicInfo'
 		}).then(function(result){
+			console.log('=======================THIS ONE====>', result.data)
 			return result.data;
 		});
 	};

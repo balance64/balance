@@ -8,7 +8,7 @@ angular.module('profile', [])
   }
 
 	Prof.getProfileInfo($scope.username).then(function(info) {
-		$scope.info = info[0];
+		$scope.info = info;
 	});
   $scope.hello = 'fuckhead';
   // Prof.getFood($scope.username).then(function(info) {
