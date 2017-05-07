@@ -1,40 +1,41 @@
 console.log('dddddddd');
-angular.module('AuthModule', []).factory('Auth', function($http, $location) {
-	var accessToken = "";
-	var signin = function(data) {
-		console.log('=====data: ', data)
-		$http.post('/signin', data).then(function(response) {
-			if(response.data.success === true) {
-				var accessToken = response.data.token;	
-				angular.module('balance').config(function($httpProvider){
-					$httpProvider.interceptors.push({
-						request: function(config) {
-							config.headers['Authorization'] = 'Bearer ' + accessToken;
-						}
-					});
-				});
-				console.log('headers done');
+angular.module('AuthModule', []).factory('Auth',
+  function($http, $location, formEncode, currentUser) {
+    var accessToken = "";
+    var signin = function(data, nextUrl) { ///data.username, data.password
+      //console.log('=====data: ', data)
+      
 
-				$location.path('/users/' + data.username + '/')
-			} else {
-				$location.path('/login');
-			}
-			
-			
+      var config = {
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }
+      var username = data.username;
 
+      nextUrl = nextUrl || '/users/' + username;
 
-			console.log(response);
-		})
-	}
+      data = formEncode(data);
+      return $http.post('/signin', data, config)
+        .then(function(response) {
+            console.log('response: ====> ', response);
+            currentUser.setUser(username, response.data.token);
+            console.log(currentUser);
+            return data.username;
+        })
+        .then(function(username){
+        	$location.path(nextUrl)
+        });
+    }
 
-	return {
-		accessToken: accessToken,
-		signin: signin,
-		signout: function() {
-			this.accessToken = '';
-		},
-		isAuth: function() {
-			return this.accessToken !== '';
-		}
-	}
-});
+    return {
+      accessToken: accessToken,
+      signin: signin,
+      signout: function() {
+          this.accessToken = '';
+      },
+      isAuth: function() {
+          return this.accessToken !== '';
+      }
+    }
+  });

@@ -1,6 +1,7 @@
 angular.module('signup',[])
 
-.controller('signupController', ['$scope', '$location', '$http', 'Auth', function($scope, $location, $http, Auth) {
+.controller('signupController', ['$scope', '$location', '$http', 'Auth', 
+    function($scope, $location, $http, Auth) {
   console.log(Auth);
   $scope.goMake = function() {
   	var signInData = {username: $scope.username, password: $scope.password};

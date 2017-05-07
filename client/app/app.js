@@ -7,7 +7,8 @@ angular.module('balance',['ngRoute',
 		'signup',
 		'home',
 		'maker',
-		'AuthModule'
+		'AuthModule',
+		'utilsModule'
 	])
 	.config(function ($routeProvider, $locationProvider){
 		$routeProvider

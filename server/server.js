@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(function(req, res, next){
-  console.log(req.headers);
+  console.log('req.headers: ==================>', req.headers);
   next();
 })
 
