@@ -136,8 +136,8 @@ app.post('/food', function(req, res) {
 //curl -v -H "Authorization: Bearer 123456789" --data "exercise=sex&calories=1000&miles=34" http://localhost:4050/exercise
 app.post('/exercise', function(req, res) {
   var exercise = req.body.exercise;
-  var calories = req.body.calories;
-  var miles = req.body.miles;
+  var calories = req.body.calories || 0;
+  var miles = req.body.miles || 0;
 
   knex('users').select('id').where({username: req.user})
     .then(function(id){

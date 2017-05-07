@@ -57,11 +57,27 @@ angular.module('services',[])
 		return tabs;
 	};
 
+	var postWeight = function(weight) {
+		return $http.post('/weight', {weight: weight});
+	}
+	
+	var postExercise = function(exercise, calories, miles) {
+		return $http.post('/exercise', {exercise: exercise, calories: calories, miles: miles});
+	}
+
+	var postFood = function(food, calories) {
+		return $http.post('/food', {food: food, calories: calories});
+	}
+
 	return {
+		postWeight: postWeight,
+		postFood: postFood,
+		postExercise: postExercise,
+
 		getProfileInfo: getProfileInfo,
 		tabView: tabView,
 		getFood: getFood,
-		getExercises, getExercises,
+		getExercises: getExercises,
 		getWeight: getWeight
 
 	};

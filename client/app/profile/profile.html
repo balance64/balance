@@ -43,10 +43,11 @@
                     <div class='row'>
                         <form class="col s12">
                             <div class="input-field col s6">
-                                <input id="Weight" type="text" class="validate">
+                                <input id="Weight" type="text" class="validate" ng-model='weight'>
                                 <label class="active" for="Weight">Weight</label>
                             </div>
                         </form>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red" ng-click='postWeight()'><i class="material-icons">call_made</i></a>
                     </div>
                 </div>
                 <div ng-show='tabs.consumables'>
@@ -54,39 +55,31 @@
                         <form class="col s12">
                             <div class='row'>
                                 <div class="input-field col s6">
-                                    <input id="Food" type="text" class="validate">
+                                    <input id="Food" type="text" class="validate" ng-model='food'>
                                     <label class="active" for="Food">Food</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="Cals" type="text" class="validate">
+                                    <input id="Cals" type="text" class="validate" ng-model='consumed'>
                                     <label class="active" for="Cals">Calories</label>
                                 </div>
                             </div>
-                            <div class='row'>
-                                <div class="input-field col s6">
-                                    <input id="Drink" type="text" class="validate">
-                                    <label class="active" for="Drink">Drink</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="calories" type="text" class="validate">
-                                    <label class="active" for="calories">Calories</label>
-                                </div>
-                            </div>
                         </form>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red" ng-click='postFood()'><i class="material-icons">call_made</i></a>
                     </div>
                 </div>
                 <div ng-show='tabs.exercise'>
                     <div class='row'>
                         <form class="col s12">
                             <div class="input-field col s6">
-                                <input id="Exercise" type="text" class="validate">
+                                <input id="Exercise" type="text" class="validate" ng-model='exercise'>
                                 <label class="active" for="Exercise">Exercise</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="burnt" type="text" class="validate">
+                                <input id="burnt" type="text" class="validate" ng-model='burned'>
                                 <label class="active" for="burnt">Calories burnt</label>
                             </div>
                         </form>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red" ng-click='postExercise()'><i class="material-icons">call_made</i></a>
                     </div>
                 </div>
                 <div ng-show='tabs.calendar'>
