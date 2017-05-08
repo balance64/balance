@@ -3,33 +3,28 @@ angular.module('services',[])
 .factory('Prof', function($http, $rootScope) {
 
 	var getGraphData = function() {
-
+		//gets weight history ({weight, date} objects)
 		return $http.get('/weightHistory')
 		.then( (d) => {
-			console.log('asdfsadfasdf', d)
-			console.log('weight history -----~~~~~~~~~>', d.data.map(d=>[d.date.toString().slice(0,10), d.weight]));
-			return d.data.map(da=>[da.date.toString().slice(8,10), da.weight])
+			return d.data.map(da=>[da.date.toString().slice(8,10), da.weight]);
 		})
 		.catch((e) => {
 			return []
 		});
 	}
 
-	var getDateSelected = function(date) {
-		console.log('gemo should fuck off!', date);
-	};
-
 	var getProfileInfo = function(user) {
+		//returns a promise that resolves with the user's basic info
 		return $http({
 			method: 'GET',
 			url: '/basicInfo'
 		}).then(function(result){
-			console.log('================THIS ONE====>', result.data)
 			return result.data;
 		});
 	};
 
 	var getFood =function(user) {
+		//return promise with a list of foods
 		return $http({
 			method: 'GET',
 			url: '/foodHistory'
@@ -39,6 +34,7 @@ angular.module('services',[])
 	};
 
 	var getExercises =function(user) {
+		//return promise with a list of exercises
 		return $http({
 			method: 'GET',
 			url: `/exerciseHistory`
@@ -48,6 +44,7 @@ angular.module('services',[])
 	};
 
 	var getWeight =function(user) {
+		//promise that resolves with a weight history
 		return $http({
 			method: 'GET',
 			url: `/weightHistory`
@@ -57,6 +54,7 @@ angular.module('services',[])
 	};
 
 	var tabView = function(item) {
+		//if tabs.xxxx === false, it means that it is not visible
 		var tabs = {
 			greeting: false,
 			weight: false,
@@ -68,11 +66,6 @@ angular.module('services',[])
 
 		if(item) {
 			tabs[item] = true;
-			// if(item === 'calendar') {
-			// 	$(function(){
-			// 		$('#calendar').fullCalendar()
-			// 	});
-			// }
 		} else {
 			tabs.greeting = true;
 		}
@@ -80,6 +73,8 @@ angular.module('services',[])
 		return tabs;
 	};
 
+
+	//these functions add entries to db for the current user
 	var postWeight = function(weight) {
 		return $http.post('/weight', {weight: weight});
 	}
@@ -91,6 +86,7 @@ angular.module('services',[])
 	var postFood = function(food, calories) {
 		return $http.post('/food', {food: food, calories: calories});
 	}
+
 
 	var onDayClick = function(day) {
 		getWeight()
@@ -114,20 +110,19 @@ angular.module('services',[])
 		exerciseEvents: [],
 		foodEvents: [],
 		onDayClick: (function(day) {
+			//function that populates the list of activities per day once a calendar cell
+			//is clicked
 			getFood().then(function(res){
 				this.foodEvents = res;
 				$rootScope.$broadcast('foodChange', res, day)
-				console.log('foods ', res);
 			});
 			getExercises().then(function(res){
 				this.exerciseEvents = res;
 				$rootScope.$broadcast('exerciseChange', res, day)
-				console.log('exercises', res);
 			});
 			getWeight().then(function(res) {
 				this.weightEvents = res;
 				$rootScope.$broadcast('weightChange', res, day)
-				console.log('weights', res);
 			});
 		}).bind(this)
 	};
