@@ -24,6 +24,15 @@ require('./auth/auth.js')(app, knex)
 
 
 
+app.use(bodyParser.json());
+
+
+
+require('./auth')(app)
+
+
+
+
 app.get('/', function(req, res) {
     //res.send('========================================================authentication passed')
     res.sendFile(path.join(__dirname + '/../client/index.html'));
@@ -32,7 +41,7 @@ app.use(express.static(__dirname + '/../client'));
 // app.get('/api/users/:username', (request, response) => {
 //   knex.select().from('users').where({username: request.params.username})
 //           .then(function(secrets) {
-//           	console.log('fetching tg');
+//            console.log('fetching tg');
 //             response.status(200).json(secrets);
 //           })
 //           .catch(function(error) {
