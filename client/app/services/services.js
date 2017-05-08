@@ -55,11 +55,11 @@ angular.module('services',[])
 
 		if(item) {
 			tabs[item] = true;
-			if(item === 'calendar') {
-				$(function(){
-					$('#calendar').fullCalendar()
-				});
-			}
+			// if(item === 'calendar') {
+			// 	$(function(){
+			// 		$('#calendar').fullCalendar()
+			// 	});
+			// }
 		} else {
 			tabs.greeting = true;
 		}
