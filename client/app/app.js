@@ -40,23 +40,20 @@ angular.module('balance',['ngRoute',
 
 	})
 	.run(function ($rootScope, $location, currentUser) {
-	  console.log(currentUser);
 	  $rootScope.$on('$routeChangeStart', function (evt, next, current) {
-	    console.log('$routeChangeStart MF: ', next.$$route.originalPath)
-	    //if(next.$$route.originalPath === '/signup' || next.$$route.originalPath === '/login') {
 	    if(next.$$route.originalPath === '/signup' || next.$$route.originalPath === '/login') {
-	    	console.log('asdf');
 	    	if(currentUser.user.loggedIn()) {
-	    		console.log(JSON.stringify(currentUser));
 	    		$location.path('/users/' + currentUser.user.username);
+	    		//redirect to /users/username if the address is /login or /signup
 	    	} else return;
 	    }
 	    if (!currentUser.user.loggedIn()) {
 	      console.log('is not authenticated ')
-	      $location.path('/');
+	      $location.path('/'); //redirect to '/' if not authenticated
 	    }
 	    if (next.$$route.originalPath.startsWith('/users/') && !next.$$route.originalPath.startsWith('/users/' + currentUser.user.username)) {
 	    	$location.path('/users/' + currentUser.user.username);
+	    	//redirect to /users/:username if logged in but a wrong :username was provided
 	    }
 	  });
 	});
