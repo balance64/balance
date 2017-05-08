@@ -13,17 +13,21 @@
         <div class='col s3'>
             <img class='profile-pic' src='http://cdn.pulptastic.com/wp-content/uploads/2015/09/sloth1.jpg' height="80" width="80" />
             <br/>
-            <ul class='grey col s6 profile-info'>
-                <li>{{info.username}}</li>
-                <li>{{info.weight}}</li>
-                <li>{{info.height}}</li>
-                <li>{{info.sex}}</li>
+            <ul class='grey col s12 profile-info'>
+                <li><h5>Hello, {{info.username}}!</h5></li>
+                <li><h5>Weight:</h5>   {{info.weight}}</li>
+                <li><h5>Height:</h5>   {{info.height}}</li>
+                <li><h5>Sex:</h5>   {{info.sex}}</li>
+                <li><h5>Age:</h5>   {{info.age}}</li>
             </ul>
+            <style type="text/css">h5{
+                font-size: 1.3em;
+                display: inline-block;}</style>
         </div>
         <!-- Materialize has cards that hold information http://materializecss.com/cards.html -->
         <div class="card col s9">
             <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                <p>It does not matter how slowly you go, as long as you do not stop. :)</p>
             </div>
             <div class="card-tabs">
                 <ul class="tabs tabs-fixed-width">
@@ -37,7 +41,7 @@
             <!-- Input form inside of card this turned out to be VERY picky, don't take away the active class; Maybe add jquery so to keep this in a serperate file -->
             <div class="card-content grey lighten-4">
                 <div ng-show='tabs.greeting'>
-                    i hate all days!
+                    <img class="greeting" src="http://i.imgur.com/4FQv7r.jpg">
                 </div>
                 <div ng-show='tabs.weight'>
                     <div class='row'>
