@@ -64,6 +64,7 @@ module.exports = function(app, knex) {
 	app.use('/test', passport.authenticate('bearer', {session: false }));
 	app.use('/foodHistory', passport.authenticate('bearer', {session: false }));
 	app.use('/exerciseHistory', passport.authenticate('bearer', {session: false }));
+	app.use('/weightHistory', passport.authenticate('bearer', {session: false }));
 	app.use('/basicInfo', passport.authenticate('bearer', {session: false }));
 	app.use('/profile', passport.authenticate('bearer', {session: false }));
 	app.use('/weight', passport.authenticate('bearer', {session: false }));

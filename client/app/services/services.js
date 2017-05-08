@@ -19,7 +19,7 @@ angular.module('services',[])
 	var getFood =function(user) {
 		return $http({
 			method: 'GET',
-			url: `api/food/${user}`
+			url: '/foodHistory'
 		}).then(function(result){
 			return result.data;
 		});
@@ -28,7 +28,7 @@ angular.module('services',[])
 	var getExercises =function(user) {
 		return $http({
 			method: 'GET',
-			url: `api/exercises/${user}`
+			url: `/exerciseHistory`
 		}).then(function(result){
 			return result.data;
 		});
@@ -37,7 +37,7 @@ angular.module('services',[])
 	var getWeight =function(user) {
 		return $http({
 			method: 'GET',
-			url: `api/weight/${user}`
+			url: `/weightHistory`
 		}).then(function(result){
 			return result.data;
 		});
@@ -79,6 +79,11 @@ angular.module('services',[])
 		return $http.post('/food', {food: food, calories: calories});
 	}
 
+	var onDayClick = function(day) {
+		getWeight()
+	}
+
+
 	return {
 		postWeight: postWeight,
 		postFood: postFood,
@@ -88,7 +93,24 @@ angular.module('services',[])
 		tabView: tabView,
 		getFood: getFood,
 		getExercises: getExercises,
-		getWeight: getWeight
+		getWeight: getWeight,
 
+		weightEvents: [],
+		exerciseEvents: [],
+		foodEvents: [],
+		onDayClick: function() {
+			getFood().then(function(res){
+				this.foodEvents = res;
+				console.log('foods ', res);
+			});
+			getExercises().then(function(res){
+				this.exerciseEvents = res;
+				console.log('exercises', res);
+			});
+			getWeight().then(function(res) {
+				this.weightEvents = res;
+				console.log('weights', res);
+			});
+		}
 	};
 });

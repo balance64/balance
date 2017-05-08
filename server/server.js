@@ -74,6 +74,16 @@ app.get('/exerciseHistory', function(req, res) {
         });
 });
 
+app.get('/weightHistory', function(req, res) {
+  knex.from('weights').innerJoin('users', 'users.id', 'weights.user_id')
+    .select().where({'users.username': req.user})
+    .then(function(results) {
+      res.status(200).json(results);
+    }).catch(function(err) {
+      res.status(500).json(err);
+    })
+})
+
 // app.post('/weight', function(req, res) {
 //   knex()
 // });
