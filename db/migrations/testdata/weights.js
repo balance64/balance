@@ -26,8 +26,44 @@ module.exports = [
   },
   {
     id: 5,
-    date: '2014-08-24 15:30:00',
-    weight: 199,
-    user_id: 1
+    date: '2017-05-01 15:30:00',
+    weight: 250,
+    user_id: 5
+  },
+  {
+    id: 6,
+    date: '2017-05-02 15:30:00',
+    weight: 250,
+    user_id: 5
+  },
+  {
+    id: 7,
+    date: '2017-05-03 15:30:00',
+    weight: 250,
+    user_id: 5
+  },
+  {
+    id: 8,
+    date: '2017-05-04 15:30:00',
+    weight: 250,
+    user_id: 5
+  },
+  {
+    id: 9,
+    date: '2017-05-05 15:30:00',
+    weight: 250,
+    user_id: 5
+  },
+  {
+    id: 10,
+    date: '2017-05-06 15:30:00',
+    weight: 250,
+    user_id: 5
+  },
+  {
+    id: 11,
+    date: '2017-05-07 15:30:00',
+    weight: 250,
+    user_id: 5
   }
 ];

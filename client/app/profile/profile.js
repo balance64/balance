@@ -95,27 +95,26 @@ angular.module('profile', [])
     replace: true,
     template: '<div></div>',
     link: function(scope, element, attrs) {
-      Prof.getGraphData().then(function(d){
+      Prof.getGraphData().then(function(graphData){
         scope.chart = google.charts;
         google.charts.load('current', {packages: ['corechart', 'line']});
         google.charts.setOnLoadCallback(drawBasic);
-        var graphData;
         function drawBasic() {
 
           var data = new google.visualization.DataTable();
-          data.addColumn('number', 'X');
+          data.addColumn('string', 'X');
           data.addColumn('number', 'Pounds');
           //the frist number is weeks the second number is pounds
           data.addRows(
-            //[[0, 0], [1, 4], [2, 6], [3, 13], [4, 18], [5, 25]]
-            d
+            //[['michael', 0], ['and', 4], ['trace', 6], ['are', 13], ['good', 18], ['suckers', 25]]
+            graphData
           );
           var options = {
             hAxis: {
-              title: 'Weeks'
+              title: 'Days'
             },
             vAxis: {
-              title: 'Pounds lost'
+              title: 'Weight'
             }
           };
           

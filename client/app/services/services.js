@@ -4,12 +4,14 @@ angular.module('services',[])
 
 	var getGraphData = function() {
 
-		return $http.get('/basicInfo')
+		return $http.get('/weightHistory')
 		.then( (d) => {
-			return [[0, 100], [1, 4], [2, 6], [3, 13], [4, 18], [5, 25]]
+			console.log('asdfsadfasdf', d)
+			console.log('weight history -----~~~~~~~~~>', d.data.map(d=>[d.date.toString().slice(0,10), d.weight]));
+			return d.data.map(da=>[da.date.toString().slice(8,10), da.weight])
 		})
 		.catch((e) => {
-			return [[0, 100], [1, 4], [2, 6], [3, 13], [4, 18], [5, 25]]
+			return []
 		});
 	}
 

@@ -27,5 +27,12 @@ module.exports = [
     weight: 200,
     height: 175,
     sex: 'male'
+  },
+  {
+    id: 5,
+    username: '333',
+    weight: 210,
+    height: 170,
+    sex: 'male'
   }
 ];
