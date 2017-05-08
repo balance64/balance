@@ -58,11 +58,12 @@ angular.module('utilsModule', [])
 	}
 })
 
-.factory('redirectLogin', function($q, $location) {
+.factory('redirectLogin', function($q, $location, currentUser) {
 
 	var path;
 
 	var responseError = function(response) {
+		currentUser.user.signOut();
 		path = $location.path();
 		if(response.status === 401) {
 			$location.path('/login');
@@ -82,4 +83,5 @@ angular.module('utilsModule', [])
 
 .config(function($httpProvider) {
 	$httpProvider.interceptors.push('addToken');
+	$httpProvider.interceptors.push('redirectLogin')
 });

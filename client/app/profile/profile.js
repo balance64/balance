@@ -89,3 +89,47 @@ angular.module('profile', [])
   }
 })
 
+.directive('graph', function(Prof) {
+  return {
+    restrict: 'AE',
+    replace: true,
+    template: '<div></div>',
+    link: function(scope, element, attrs) {
+      Prof.getGraphData().then(function(d){
+        scope.chart = google.charts;
+        google.charts.load('current', {packages: ['corechart', 'line']});
+        google.charts.setOnLoadCallback(drawBasic);
+        var graphData;
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('number', 'X');
+          data.addColumn('number', 'Pounds');
+          //the frist number is weeks the second number is pounds
+          data.addRows(
+            //[[0, 0], [1, 4], [2, 6], [3, 13], [4, 18], [5, 25]]
+            d
+          );
+          var options = {
+            hAxis: {
+              title: 'Weeks'
+            },
+            vAxis: {
+              title: 'Pounds lost'
+            }
+          };
+          
+          element[0].style = "width: 900px; height: 900px";
+          var chart = new google.visualization.LineChart(element[0]);
+
+          chart.draw(data, options);
+          graphData = data;
+
+          
+        }
+      });
+      
+    }
+  }
+})
+

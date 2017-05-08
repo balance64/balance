@@ -2,6 +2,17 @@ angular.module('services',[])
 
 .factory('Prof', function($http, $rootScope) {
 
+	var getGraphData = function() {
+
+		return $http.get('/basicInfo')
+		.then( (d) => {
+			return [[0, 100], [1, 4], [2, 6], [3, 13], [4, 18], [5, 25]]
+		})
+		.catch((e) => {
+			return [[0, 100], [1, 4], [2, 6], [3, 13], [4, 18], [5, 25]]
+		});
+	}
+
 	var getDateSelected = function(date) {
 		console.log('gemo should fuck off!', date);
 	};
@@ -85,6 +96,8 @@ angular.module('services',[])
 
 
 	return {
+		getGraphData: getGraphData,
+
 		postWeight: postWeight,
 		postFood: postFood,
 		postExercise: postExercise,
