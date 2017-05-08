@@ -87,6 +87,15 @@
                     {{calInfo}} -->
                     <anything></anything>
                     <!-- <div id='calendar'></div> -->
+                    <span><h3>Weight: </h3>{{weights[weights.length - 1].weight}}</span>
+                    <h3>You ate:</h3>
+                    <ul>
+                        <li ng-repeat="food in foods">{{food.food}}</li>
+                    </ul>
+                    <h3>You did: </h3>    
+                    <ul>
+                        <li ng-repeat="exercise in exercises">{{exercise.exercise}}</li>
+                    </ul>
                 </div>
                 <div ng-show='tabs.graphs'>
                     i hate wednesdays

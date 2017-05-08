@@ -55,7 +55,7 @@ app.get('/basicInfo', function(req, res) {
 
 app.get('/foodHistory', function(req, res) {
   knex.from('foods').innerJoin('users', 'users.id', 'foods.user_id')
-  .select('food', 'brand', 'ammount', 'calories').where({'users.username': req.user})
+  .select('food', 'brand', 'ammount', 'calories', 'created_at').where({'users.username': req.user})
   .then(function(results){
     res.status(200).json(results);
   }).catch(function(error){

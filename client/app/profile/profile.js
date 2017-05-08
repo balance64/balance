@@ -10,22 +10,42 @@ angular.module('profile', [])
 	Prof.getProfileInfo($scope.username).then(function(info) {
 		$scope.info = info;
 	});
-  
-  // Prof.getFood($scope.username).then(function(info) {
-  //   $scope.foods = food;
-  // });
 
-  // Prof.getExercises($scope.username).then(function(info) {
-  //   $scope.exerses = drink;
-  // });
+  $scope.$on('exerciseChange', function(e, stuff, day) {
+    day = new Date(day.getTime() + 1000 * 60 * 60 * 24)
+    $scope.exercises = stuff.filter((exer) => {
+      //console.log(new Date(weight.date), "vs" , day);
+      return (''+new Date(exer.created_at)).slice(0, 15) === (''+day).slice(0,15);
+    });
+    console.log('exerciseChanged', $scope.exercises, day)
+  })
+  $scope.$on('foodChange', function(event, stuff, day) {
+    day = new Date(day.getTime() + 1000 * 60 * 60 * 24)
+    $scope.foods = stuff.filter((food) => {
+      //console.log(new Date(weight.date), "vs" , day);
+      console.log('=====>', day.toString())
+      console.log('asdfasdfasdfasdf.', food)
+      console.log((''+new Date(food.created_at)).slice(0, 15), 'vs', (''+day).slice(0,15))
+      return (''+new Date(food.created_at)).slice(0, 15) === (''+day).slice(0,15);
+    });
+    console.log('foodChanged', $scope.foods, day)
+  })
+  $scope.$on('weightChange', function(e, stuff, day) {
+    day = new Date(day.getTime() + 1000 * 60 * 60 * 24)
+    $scope.weights = stuff.filter((weight) => {
+      //console.log(new Date(weight.date), "vs" , day);
+      return (''+new Date(weight.date)).slice(0, 15) === (''+day).slice(0,15);
+    });
+    console.log('weightChanged', $scope.weights, day)
+  })
+  $scope.weights = [];
+  $scope.foods = [];
+  $scope.exercises = [];
+ 
 
-  // Prof.getWeight($scope.username).then(function(info) {
-  //   $scope.weight = drink;
-  // });
 	$scope.tabs = Prof.tabView();
 
   $scope.postWeight = function() {
-      //$scope.weight
       Prof.postWeight($scope.weight).then(function() {
           $scope.info.weight = $scope.weight;
       })
@@ -60,7 +80,7 @@ angular.module('profile', [])
       angular.element(element).fullCalendar({
 
         dayClick: function(date, jsEvent, view) {
-          Prof.onDayClick();
+          Prof.onDayClick(new Date(date._d));
         }
       });
     }

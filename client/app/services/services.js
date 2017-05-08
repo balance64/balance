@@ -1,6 +1,6 @@
 angular.module('services',[])
 
-.factory('Prof', function($http) {
+.factory('Prof', function($http, $rootScope) {
 
 	var getDateSelected = function(date) {
 		console.log('gemo should fuck off!', date);
@@ -98,19 +98,22 @@ angular.module('services',[])
 		weightEvents: [],
 		exerciseEvents: [],
 		foodEvents: [],
-		onDayClick: function() {
+		onDayClick: (function(day) {
 			getFood().then(function(res){
 				this.foodEvents = res;
+				$rootScope.$broadcast('foodChange', res, day)
 				console.log('foods ', res);
 			});
 			getExercises().then(function(res){
 				this.exerciseEvents = res;
+				$rootScope.$broadcast('exerciseChange', res, day)
 				console.log('exercises', res);
 			});
 			getWeight().then(function(res) {
 				this.weightEvents = res;
+				$rootScope.$broadcast('weightChange', res, day)
 				console.log('weights', res);
 			});
-		}
+		}).bind(this)
 	};
 });
