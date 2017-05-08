@@ -2,7 +2,6 @@ angular.module('profile', [])
 
 .controller('profileController', ['$scope', 'Prof', '$location', 'currentUser', function($scope, Prof, $location, currentUser) {
 	$scope.username = $location.path().split('/')[2];
-  console.log('cur user ', currentUser)
   $scope.signout = function() {
     currentUser.user.signOut();
   }
@@ -11,40 +10,35 @@ angular.module('profile', [])
 		$scope.info = info;
 	});
 
+
+  /**EVENTS FIRED WHEN A CLICK TO THE CALENDAR OCCURRED AND AN HTTP REQUEST MODIFIED
+  THE EXERCISE, FOOD OR WEIGHT ARRAYS**/
   $scope.$on('exerciseChange', function(e, stuff, day) {
     day = new Date(day.getTime() + 1000 * 60 * 60 * 24)
     $scope.exercises = stuff.filter((exer) => {
-      //console.log(new Date(weight.date), "vs" , day);
       return (''+new Date(exer.created_at)).slice(0, 15) === (''+day).slice(0,15);
     });
-    console.log('exerciseChanged', $scope.exercises, day)
   })
   $scope.$on('foodChange', function(event, stuff, day) {
     day = new Date(day.getTime() + 1000 * 60 * 60 * 24)
     $scope.foods = stuff.filter((food) => {
-      //console.log(new Date(weight.date), "vs" , day);
-      console.log('=====>', day.toString())
-      console.log('asdfasdfasdfasdf.', food)
-      console.log((''+new Date(food.created_at)).slice(0, 15), 'vs', (''+day).slice(0,15))
       return (''+new Date(food.created_at)).slice(0, 15) === (''+day).slice(0,15);
     });
-    console.log('foodChanged', $scope.foods, day)
   })
   $scope.$on('weightChange', function(e, stuff, day) {
     day = new Date(day.getTime() + 1000 * 60 * 60 * 24)
     $scope.weights = stuff.filter((weight) => {
-      //console.log(new Date(weight.date), "vs" , day);
       return (''+new Date(weight.date)).slice(0, 15) === (''+day).slice(0,15);
     });
-    console.log('weightChanged', $scope.weights, day)
   })
+  /**END OF EVENTS**/
   $scope.weights = [];
   $scope.foods = [];
   $scope.exercises = [];
  
 
 	$scope.tabs = Prof.tabView();
-
+/***POST SIMPLE STUFF***/
   $scope.postWeight = function() {
       Prof.postWeight($scope.weight).then(function() {
           $scope.info.weight = $scope.weight;
@@ -58,7 +52,6 @@ angular.module('profile', [])
           .then(() => {
               $scope.exercise = '';
               $scope.burned = '';
-              console.log('exercise posted in a satisfatorily way')
           });
   }
 
@@ -67,14 +60,14 @@ angular.module('profile', [])
           .then(() => { 
               $scope.food = '';
               $scope.consumed = '';
-              console.log('food posted successfully!!')
           })
   }
 
   $scope.tabView = (item) => $scope.tabs = Prof.tabView(item);
 }])
 
-.directive('anything', function(Prof) {
+////CALENDAR
+.directive('anything', function(Prof) {//TODO: make this 'calendar' instead of 'anything'
   return {
     restrict: 'AE',
     replace: true,
@@ -89,6 +82,8 @@ angular.module('profile', [])
   }
 })
 
+
+///GRAPH
 .directive('graph', function(Prof) {
   return {
     restrict: 'AE',
@@ -104,11 +99,7 @@ angular.module('profile', [])
           var data = new google.visualization.DataTable();
           data.addColumn('string', 'X');
           data.addColumn('number', 'Pounds');
-          //the frist number is weeks the second number is pounds
-          data.addRows(
-            //[['michael', 0], ['and', 4], ['trace', 6], ['are', 13], ['good', 18], ['suckers', 25]]
-            graphData
-          );
+          data.addRows( graphData );
           var options = {
             hAxis: {
               title: 'Days'
