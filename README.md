@@ -1,17 +1,6 @@
 # balance
-App to help Michael lose weight.
-\#doWhatYouCan
-\n
-<p>HAS a working knex database and server example, to get started just follow these steps:</p>
-<ul>
-	<li>create database in command line using 'create database balance;'</li>
-	<li>run 'knex migrate:latest'</li>
-	<ul>IF THIS DOESNT WORK
-		<li>Recreate database in command line using 'create database balance;'</li>
-		<li>delete migrations folder but keep the file inside</li>
-		<li>run 'knex migrate:users'</li>
-		<li>paste old file over new file</li>
-		<li>run 'knex migrate:latest'</li>
-	</ul>
-</ul>
-![Alt text](/readmePictures/siteMap.png?raw=true "Site Map")
+<p>Fitness Journal that keeps track of your progress so you can optimize your personal fitness jouney</p>
+
+<h1>How to add to this app</h1>
+<p>cone down repo</p>
+
