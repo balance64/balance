@@ -21,6 +21,8 @@ angular.module('utilsModule', [])
 		},
 		signOut: function() {
 			this.token = '';
+			this.username = '';
+			this.token = '';
 			$window.localStorage.setItem('balance.token', '');
 			$window.localStorage.setItem('balance.username', '');
 		}

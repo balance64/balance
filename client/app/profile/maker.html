@@ -17,8 +17,8 @@
         <form class='col s12'>
           <div class='row'>
             <div class="input-field col s8">
-              <input id='weight' require type="text" class='validate' ng-model='weight'>
-              <label class='active' for='weight'>Weight</label>
+              <input id='sex' require type="text" class='validate' ng-model='sex'>
+              <label class='active' for='sex'>Sex</label>
             </div>
           </div>
           <div class='row'>
@@ -33,9 +33,15 @@
               <label class='active' for='age'>Age</label>
             </div>
           </div>
+          <div class='row'>
+            <div class="input-field col s6">
+              <input id='weight' require type="text" class='validate' ng-model='weight'>
+              <label class='active' for='weight'>Weight</label>
+            </div>
+          </div>
         </form>
       </div>
-      <a class="btn-floating halfway-fab waves-effect waves-light red" ng-click='goLogin()'><i class="material-icons">call_made</i></a>
+      <a class="btn-floating halfway-fab waves-effect waves-light red" ng-click='postProfile()'><i class="material-icons">call_made</i></a>
     </div>  
   </div>
   

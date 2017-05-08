@@ -48,6 +48,8 @@ angular.module('profile', [])
   $scope.postWeight = function() {
       Prof.postWeight($scope.weight).then(function() {
           $scope.info.weight = $scope.weight;
+      }).then(()=>{
+        $scope.weight = '';
       })
   }
 

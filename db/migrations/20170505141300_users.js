@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     col.integer('weight').notNullable();
     col.integer('height').notNullable();
     col.string('sex').notNullable();
+    col.integer('age').notNullable();
   })
   .createTableIfNotExists('foods', function (col) {
     col.increments('id').primary();

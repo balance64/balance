@@ -11,7 +11,7 @@ angular.module('signup',[])
   			if(!response.data.success) {
   				console.log('error. duplicate thing')
   			} else {
-  				Auth.signin(signInData);
+  				Auth.signin(signInData).then(function(){$location.path('/maker/'+$scope.username)});
   			}
   		});
 

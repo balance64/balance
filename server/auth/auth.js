@@ -37,19 +37,23 @@ module.exports = function(app, knex) {
 	});
 
 	app.post('/signin', function(req, res) {
+		console.log('sign in attempt, ')
 		knex('authentications').select('password').where({username: req.body.username})
 		.then(function(password) {
 			password = password[0].password;
 			//res.send(password);
 			console.log(req.body);
 			console.log(password)
+			console.log('attempting to login ', password)
 			bcrypt.compare(req.body.password, password, function(err, response) {
 				if(err) {
+					console.log('about to return ', 401, {success: false, message: err})
 					res.status(401).json({success: false, message: err});
 				} else {
 					console.log('config key: ', config);
 					var token = jwt.sign(req.body, config.key, {expiresIn: '1h'}); 
 					console.log('generated token: ', token);
+					console.log('about to return ', 200, {success: true, message: 'ok', token: token})
 					res.json({success: true, message: 'ok', token: token});
 				}
 			});
