@@ -5,7 +5,11 @@ angular.module('login', [])
   	if ($scope.username === '' || $scope.password === '') {
   		console.log('neither username nor password can be empty');
   	} else {
-  		Auth.signin({username: $scope.username, password: $scope.password});	
+  		Auth.signin({username: $scope.username, password: $scope.password})
+  		.catch(function(e){
+  			$scope.username = ''; 
+  			$scope.password = '';
+  		});	
   	}
     //$location.path(`/users/${$scope.username}`);
   };

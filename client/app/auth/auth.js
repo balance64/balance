@@ -25,15 +25,12 @@ angular.module('AuthModule', []).factory('Auth',
               throw new Error();
             }
 						currentUser.setUser(username, response.data.token);
-            console.log(currentUser);
+            console.log('yay!!', currentUser);
             return username;
         })
-        .catch(function(e){
-          console.log('some error logging in ====>', e)
-          $location.path('/login');
-        })
         .then(function(username){
-        	redirectLogin.redirectAfterLogin(username);
+          console.log('sometimes this gets here')
+        	$location.path('/users/' + username);
         });
     }
 

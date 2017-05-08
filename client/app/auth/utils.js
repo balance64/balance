@@ -64,7 +64,8 @@ angular.module('utilsModule', [])
 
 	var responseError = function(response) {
 		currentUser.user.signOut();
-		path = $location.path();
+		if(path != '/signin')
+			path = $location.path();
 		if(response.status === 401) {
 			$location.path('/login');
 		}

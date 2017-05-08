@@ -53,7 +53,7 @@ angular.module('balance',['ngRoute',
 	    }
 	    if (!currentUser.user.loggedIn()) {
 	      console.log('is not authenticated ')
-	      $location.path('/login');
+	      $location.path('/');
 	    }
 	    if (next.$$route.originalPath.startsWith('/users/') && !next.$$route.originalPath.startsWith('/users/' + currentUser.user.username)) {
 	    	$location.path('/users/' + currentUser.user.username);

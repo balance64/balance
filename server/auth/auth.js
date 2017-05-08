@@ -50,7 +50,12 @@ module.exports = function(app, knex) {
 					console.log('about to return ', 401, {success: false, message: err})
 					res.status(401).json({success: false, message: err});
 				} else {
-					console.log('config key: ', config);
+					console.log('response: ', response);
+					if(response === false) {
+						res.status(401).json({success: false, message: err});
+						return;
+					}
+					
 					var token = jwt.sign(req.body, config.key, {expiresIn: '1h'}); 
 					console.log('generated token: ', token);
 					console.log('about to return ', 200, {success: true, message: 'ok', token: token})
