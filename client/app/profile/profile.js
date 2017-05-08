@@ -1,49 +1,44 @@
 angular.module('profile', [])
 
 .controller('profileController', ['$scope', 'Prof', '$location', 'currentUser', function($scope, Prof, $location, currentUser) {
-	$scope.username = $location.path().split('/')[2];
-  console.log('cur user ', currentUser)
   $scope.signout = function() {
     currentUser.user.signOut();
   }
 
-	Prof.getProfileInfo($scope.username).then(function(info) {
+	Prof.getProfileInfo(currentUser).then(function(info) {
 		$scope.info = info;
 	});
 
+//When you click a date on the calendar the info attached to that date will be shown
+//we are slicing because we are lazy and have more important things to do right now
+//and we can't filter for exact milliseconds.  itll only start to be a problem next year.
   $scope.$on('exerciseChange', function(e, stuff, day) {
+//For some reason the moment is one day behind, the internet says its a date format problem.  I entrust you to find out yourself
     day = new Date(day.getTime() + 1000 * 60 * 60 * 24)
     $scope.exercises = stuff.filter((exer) => {
-      //console.log(new Date(weight.date), "vs" , day);
       return (''+new Date(exer.created_at)).slice(0, 15) === (''+day).slice(0,15);
     });
-    console.log('exerciseChanged', $scope.exercises, day)
-  })
+  });
   $scope.$on('foodChange', function(event, stuff, day) {
     day = new Date(day.getTime() + 1000 * 60 * 60 * 24)
     $scope.foods = stuff.filter((food) => {
-      //console.log(new Date(weight.date), "vs" , day);
-      console.log('=====>', day.toString())
-      console.log('asdfasdfasdfasdf.', food)
-      console.log((''+new Date(food.created_at)).slice(0, 15), 'vs', (''+day).slice(0,15))
       return (''+new Date(food.created_at)).slice(0, 15) === (''+day).slice(0,15);
     });
-    console.log('foodChanged', $scope.foods, day)
-  })
+  });
   $scope.$on('weightChange', function(e, stuff, day) {
     day = new Date(day.getTime() + 1000 * 60 * 60 * 24)
     $scope.weights = stuff.filter((weight) => {
-      //console.log(new Date(weight.date), "vs" , day);
       return (''+new Date(weight.date)).slice(0, 15) === (''+day).slice(0,15);
     });
-    console.log('weightChanged', $scope.weights, day)
-  })
+  });
+
   $scope.weights = [];
   $scope.foods = [];
   $scope.exercises = [];
  
 
 	$scope.tabs = Prof.tabView();
+  $scope.tabView = (item) => $scope.tabs = Prof.tabView(item);
 
   $scope.postWeight = function() {
       Prof.postWeight($scope.weight).then(function() {
@@ -58,7 +53,6 @@ angular.module('profile', [])
           .then(() => {
               $scope.exercise = '';
               $scope.burned = '';
-              console.log('exercise posted in a satisfatorily way')
           });
   }
 
@@ -67,13 +61,14 @@ angular.module('profile', [])
           .then(() => { 
               $scope.food = '';
               $scope.consumed = '';
-              console.log('food posted successfully!!')
           })
   }
 
-  $scope.tabView = (item) => $scope.tabs = Prof.tabView(item);
 }])
-
+//"Custom directives are used in AngularJS to extend the functionality of HTML"
+//it is the angular way to stick jquery plugins in custom directives it is both 
+//segregation and allows for being made on document ready automatic.  We originally
+//had this working in the Prof factory though (didn't feel angular).
 .directive('anything', function(Prof) {
   return {
     restrict: 'AE',

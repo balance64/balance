@@ -4,7 +4,7 @@
             <a href="#" class="brand-logo"><img src="http://vignette3.wikia.nocookie.net/family-guy-the-quest-for-stuff/images/5/5b/Fat-jogger-female.png/revision/latest?cb=20150123162517" height="60" width="80"></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/#!/" ng-click='signout()'>Logout</a></li>
-                <li><a href="/#!/maker/{username}">Update Profile</a></li>
+                <!-- <li><a href="/#!/maker/{username}">Update Profile</a></li> -->
             </ul>
         </div>
     </nav>
@@ -31,6 +31,7 @@
             </div>
             <div class="card-tabs">
                 <ul class="tabs tabs-fixed-width">
+                <!-- The tab view calls a funtion in the Prof factory that takes a string tabname and returns an object with all tabs listed where the appropriate tabs value is true -->
                     <li class="tab" ng-click='tabView("weight")'><a href="">Weight</a></li>
                     <li class="tab" ng-click='tabView("exercise")'><a href="">Exercises</a></li>
                     <li class="tab" ng-click='tabView("consumables")'><a href="">Food/Drink</a></li>
@@ -38,7 +39,7 @@
                     <li class="tab" ng-click='tabView("graphs")'><a href="">Graphs</a></li>
                 </ul>
             </div>
-            <!-- Input form inside of card this turned out to be VERY picky, don't take away the active class; Maybe add jquery so to keep this in a serperate file -->
+            <!-- Input forms, each row describes a line of inputs.  the size of input is described by col s(n) up to 12 columns -->
             <div class="card-content grey lighten-4">
                 <div ng-show='tabs.greeting'>
                     <img class="greeting" src="http://i.imgur.com/4FQv7r.jpg">
@@ -87,10 +88,9 @@
                     </div>
                 </div>
                 <div ng-show='tabs.calendar'>
-                    <!-- <calendar selected="day" ></calendar>
-                    {{calInfo}} -->
+                    <!-- Calendar Directive and corresponding date data
+                     -->
                     <anything></anything>
-                    <!-- <div id='calendar'></div> -->
                     <span><h3>Weight: </h3>{{weights[weights.length - 1].weight}}</span>
                     <h3>You ate:</h3>
                     <ul>
