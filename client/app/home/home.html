@@ -1,7 +1,8 @@
 <div>
   <nav>
+    <!-- using materialize css for the title and login. -->
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo"><img src="http://vignette3.wikia.nocookie.net/family-guy-the-quest-for-stuff/images/5/5b/Fat-jogger-female.png/revision/latest?cb=20150123162517" height="60" width="80"></a>
+      <a href="#" class="brand-logo"><img src="http://www.getactivewiganandleigh.co.uk/wp-content/uploads/2012/01/LWFG_logo_only.png" height="60" width="80"></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/#!/login">Login</a></li>
       </ul>
@@ -9,10 +10,12 @@
   </nav>
 
   <div class='center-align'>
-    <a class="waves-effect waves-light btn offset-s6" href="/#!/signup"><i class="material-icons left">perm_identity</i>Signup!</a>  
+    <a class="waves-effect waves-light btn light blue" href="/#!/signup"><i class="material-icons left">perm_identity</i>Signup!</a>
   </div>
-  
+
 </div>
+<!-- using owlCarousel for the carousel if you need more info.
+Heres where to change the images in the carousel. -->
 <div class="owl-carousel owl-theme">
   <div class="item"><img src="http://images.agoramedia.com/EHBlogImages/weight-loss/2013/05/Marcia-Case-before-and-after-weightloss-400.jpg"></div>
   <div class="item"><img src="http://images.agoramedia.com/EHBlogImages/weight-loss/2015/06/Marqus-Taylor-before-and-after-weightloss-400.jpg.jpg"></div>
@@ -22,6 +25,8 @@
   <div class="item"><img src="http://images.agoramedia.com/EHBlogImages/weight-loss/2014/06/Darrick-Unterwagner-before-and-after-weightloss-400.jpg"></div>
   <div class="item"><img src="http://images.agoramedia.com/EHBlogImages/weight-loss/2013/12/Courtney-Ray-before-and-after-weightloss-400.jpg"></div>
 </div>
+<!-- this is for the carousel change options. To show the user how many images
+and how fast you want them to loop for. -->
 <script>
   $(document).ready(function(){
     var owl = $('.owl-carousel');
