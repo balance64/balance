@@ -12,7 +12,7 @@
 # This app uses which technologies?
 <p>The calendar is from FullCalendar.io</p>
 <p>The graph is a google graph</p>
-<p>The carousel is from owl</p>
+<p>The carousel is from owlCarousel</p>
 <p>The styles.css only pertains to the calendar, all styling is done with materializecss</p>
 
 
