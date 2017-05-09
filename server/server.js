@@ -24,12 +24,6 @@ require('./auth/auth.js')(app, knex)
 app.use(bodyParser.json());
 
 
-
-require('./auth')(app)
-
-
-
-
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/../client/index.html'));
 });
@@ -168,12 +162,13 @@ app.post('/exercise', function(req, res) {
       knex('exercises').insert({exercise: exercise, calories: calories, miles: miles, user_id: id[0].id, created_at: new Date()}).
       then(function(){
         res.send({success: true, message: 'ok'});
-      })
+      });
     })
     .catch(function(e) {
       res.status(401).send({message: 'problem inserting in database'});
     });
 
-app.listen(app.get('port'), function() {
-  console.log('Balance running on port ... ', app.get('port'));
+  app.listen(app.get('port'), function() {
+    console.log('Balance running on port ... ', app.get('port'));
+  });
 });
