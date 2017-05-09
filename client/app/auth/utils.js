@@ -32,11 +32,6 @@ angular.module('utilsModule', [])
 		}
 	};
 
-	// if(this.username === '' || this.token === '') {
-	// 		token = '';
-	// 		$window.localStorage.getItem('balance.token', '');
-	// 	}
-
 	return {
 		user: user,
 		setUser: function(username, token) {
