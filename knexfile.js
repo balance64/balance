@@ -8,7 +8,7 @@ module.exports = {
       password: ''
     },
     seeds: {
-      directory: './migrations/seeds'
+      directory: './db/migrations/seeds'
     }
   }
 };
