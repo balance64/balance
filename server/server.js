@@ -1,4 +1,4 @@
-const config = require('../db/knexfile.js')['development'];
+const config = require('../knexfile.js')['development'];
 const knex = require('knex') (config);
 const path = require('path');
 var express = require('express');
@@ -40,7 +40,7 @@ var insertWeight = function(username, weight) {
           knex('users').update({weight: weight}).where({username:username}).
           then(() => {console.log('success!')});
         })
-        
+
     });
 }
 app.get('/test', function(req, res) {
@@ -50,7 +50,7 @@ app.get('/test', function(req, res) {
 app.get('/basicInfo', function(req, res) {
   knex('users').select().where({username: req.user})
   .then(function(results){
-    res.status(200).json(results[0]); 
+    res.status(200).json(results[0]);
   })
 
 });
@@ -113,7 +113,7 @@ app.post('/profile', function(req, res) {
     .then(updateInUsers)
     .catch(updateInUsers);
 
-  
+
 })
 
 //curl --data "username=333&password=333" http://localhost:4050/signin
@@ -123,7 +123,7 @@ app.post('/profile', function(req, res) {
 
 
 app.post('/weight', function(req, res) {
-  var username = req.user; 
+  var username = req.user;
   var weight = req.body.weight;
   insertWeight(username, weight)
     .then(function(){

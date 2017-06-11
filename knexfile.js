@@ -7,6 +7,9 @@ module.exports = {
       user:     'root',
       password: ''
     },
+    migrations: {
+      directory: './db/migrations'
+    },
     seeds: {
       directory: './db/migrations/seeds'
     }
