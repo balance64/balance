@@ -1,8 +1,7 @@
 # balance
-<<<<<<< 0150ff204fb5fc53e8ae3a5db9de77420aefff37
 <p>Fitness Journal that keeps track of your progress so you can optimize your personal fitness jouney</p>
 
-# How to add to this app
+## How to add to this app
 <p>clone down repo</p>
 <p>npm install</p>
 <p>install knex globally</p>
@@ -10,7 +9,7 @@
 <p>If you want to use our test data run 'knex seed:run'</p>
 <p>Submit merge request</p>
 
-# This app uses which technologies?
+## This app uses which technologies?
 <p>The calendar is from FullCalendar.io</p>
 <p>The graph is a google graph</p>
 <p>The carousel is from owlCarousel</p>
